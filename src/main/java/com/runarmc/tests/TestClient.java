@@ -14,7 +14,7 @@ public class TestClient {
 
     public static void main(String[] args) throws Exception {
         ClientConfiguration configuration = ClientConfiguration.builder()
-                .host("https://endpoint.riniya.uk")
+                .host("https://api.runarmc.net")
                 .port(443)
                 .readTimeout(30)
                 .connectTimeout(30)

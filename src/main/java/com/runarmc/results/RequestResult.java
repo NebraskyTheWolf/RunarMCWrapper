@@ -1,6 +1,8 @@
 package com.runarmc.results;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,5 +12,5 @@ import lombok.Setter;
 @Setter
 public class RequestResult {
     private final Boolean status;
-    private final JsonObject data;
+    private final JsonElement data;
 }

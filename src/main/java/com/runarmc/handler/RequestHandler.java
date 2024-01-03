@@ -26,12 +26,20 @@ public class RequestHandler {
         if (model.getClass().getDeclaredAnnotationsByType(Route.class) != null) {
             Route route = model.getClass().getDeclaredAnnotation(Route.class);
 
+            String finalRoute = route.route();
+
+            if (route.arguments()) {
+                for (Map.Entry entry : arguments.entrySet()) {
+                    finalRoute = finalRoute.replaceAll(":" + entry.getKey(), entry.getValue().toString());
+                }
+            }
+
             if (route.method().equals("POST")) {
                 if (model instanceof AbstractPostModel) {
                     AbstractPostModel modelPost = (AbstractPostModel) model;
                     if (modelPost.body() != null) {
                         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),  modelPost.body().toString());
-                        Request request = this.requestBuilder(wrapper, route.method(), route.route(), body);
+                        Request request = this.requestBuilder(wrapper, route.method(), finalRoute, body);
                         Call post = wrapper.getClient().newCall(request);
 
                         this.responseBuilder(post.execute(), callback);
@@ -40,14 +48,6 @@ public class RequestHandler {
                     }
                 }
                 return;
-            }
-
-            String finalRoute = route.route();
-
-            if (route.arguments()) {
-                for (Map.Entry entry : arguments.entrySet()) {
-                    finalRoute = finalRoute.replaceAll(":" + entry.getKey(), entry.getValue().toString());
-                }
             }
 
             Request request = this.requestBuilder(wrapper, route.method(), finalRoute);

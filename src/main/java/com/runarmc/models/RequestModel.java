@@ -1,6 +1,8 @@
 package com.runarmc.models;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,5 +14,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RequestModel {
     Boolean status;
-    JsonObject data;
+    JsonElement data;
 }

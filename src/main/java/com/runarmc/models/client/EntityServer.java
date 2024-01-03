@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Route(method = "GET", route = "/api", result = ServerResult.class)
+@Route(method = "GET", route = "/api/area/fetch", result = ServerResult.class)
 @Getter @Setter @NoArgsConstructor
 public class EntityServer extends AbstractModel implements Serializable {
     String _id;
